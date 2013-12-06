@@ -7,7 +7,7 @@
 	
 	<attr path="/api/package[@name='com.nutiteq.geometry']/class[@name='NMLModel.Mesh']/field[@name='glMesh']" name="type">java.lang.Object</attr>
 
-	<!-- no need for C# access for following AsyncTasks -->
+	<!-- no need C# API access for following AsyncTasks, so can be safely removed -->
 	<remove-node path="/api/package[@name='com.nutiteq.services.routing']/class[@name='CloudMadeDirections.CmRoutingTask']" />
 	<remove-node path="/api/package[@name='com.nutiteq.advancedmap.activity']/class[@name='Offline3DMapActivity.DaeConverterServiceTask']"/>
 	<remove-node path="/api/package[@name='com.nutiteq.layers.raster']/class[@name='MapBoxMapLayer.LoadMetadataTask']"/>

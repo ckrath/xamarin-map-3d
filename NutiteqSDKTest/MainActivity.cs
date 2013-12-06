@@ -123,12 +123,12 @@ namespace NutiteqSDKTest
 
 			view.Layers.AddLayer(Online3dLayer);
 
-			// Spatialite query, show results on map
+			// Spatialite query, show results on map. Suitable for small number of objects
 			// 1. create style and layer for data
 
 			LineStyle.Builder lineStyleBuilder = new LineStyle.Builder ();
 			lineStyleBuilder.SetColor (NutiteqComponents.Color.Argb(0xff, 0x5C, 0x40, 0x33)); //brown
-			lineStyleBuilder.SetWidth (0.05f);
+			lineStyleBuilder.SetWidth (0.07f);
 			LineStyle lineStyle = lineStyleBuilder.Build ();
 
 			GeometryLayer geomLayer = new GeometryLayer (view.Layers.BaseLayer.Projection);
@@ -144,11 +144,23 @@ namespace NutiteqSDKTest
 				db.Exec ("SELECT spatialite_version(), proj4_version(), geos_version(), sqlite_version()", new GeneralQryResult ());
 
 				// real spatial query. Limit to 1000 objects to avoid layer overloading
-				String qry = "SELECT id, HEX(AsBinary(Transform(geometry,3857))), sub_type, name FROM ln_railway LIMIT 1000";
+				String qry = "SELECT id, HEX(AsBinary(Transform(geometry,3857))), sub_type, name FROM ln_railway LIMIT 50";
 				db.Exec (qry, new SpatialQryResult (geomLayer, lineStyle));
 			} catch (jsqlite.Exception ex) {
 				Log.Error( ex.LocalizedMessage );
 			}
+
+			// Spatialite Layer, requires jsqlite and proj.4 native libraries. Suitable for big number of objects
+
+			LineStyle.Builder lineStyleBuilder2 = new LineStyle.Builder ();
+			lineStyleBuilder2.SetColor (NutiteqComponents.Color.Argb(0xff, 0x00, 0x00, 0xFF)); //blue
+			lineStyleBuilder2.SetWidth (0.05f);
+			LineStyle lineStyle2 = lineStyleBuilder2.Build ();
+			StyleSet lineStyleSet = new StyleSet (lineStyle2);
+
+			SpatialiteLayer spatialLayer = new SpatialiteLayer (view.Layers.BaseLayer.Projection, "/sdcard/mapxt/estonia-latest-map.sqlite", "ln_waterway", "geometry", null, 500, null, lineStyleSet, null);
+			spatialLayer.SetAutoSimplify(2, 800);
+			view.Layers.AddLayer (spatialLayer);
 
 
 			// OSM Polygon3D layer
@@ -164,6 +176,10 @@ namespace NutiteqSDKTest
 
 			Polygon3DOSMLayer Poly3DLayer = new Polygon3DOSMLayer (view.Layers.BaseLayer.Projection, 0.3f, DefaultRoof, unchecked((int) 0xffffffff) /* white */, unchecked((int) 0xff888888) /* gray */, 1500, polyStyleSet);
 			view.Layers.AddLayer (Poly3DLayer);
+
+
+
+
 
 			// set map center and zoom
 			view.FocusPoint = Tallinn;
