@@ -53,10 +53,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Xamarin.Android.Bindings.targets" />
   <ItemGroup>
-    <EmbeddedJar Include="Jars\nutiteq-3d-sdk-2.2.0.jar" />
     <EmbeddedJar Include="Jars\AdvancedMap3D-1.0-SNAPSHOT.jar">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedJar>
+    <EmbeddedJar Include="Jars\jsqlite.jar">
+      <DeployService-Deploy>True</DeployService-Deploy>
+    </EmbeddedJar>
+    <EmbeddedJar Include="Jars\nutiteq-3dsdk-2.2.1.jar" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\protobuf-java-2.4.1.jar">
@@ -66,8 +69,11 @@
     <EmbeddedReferenceJar Include="Jars\graphhopper-0.1-SNAPSHOT-android.jar" />
     <EmbeddedReferenceJar Include="Jars\gson-2.2.3.jar" />
     <EmbeddedReferenceJar Include="Jars\jmustache-1.5.jar" />
-    <EmbeddedReferenceJar Include="Jars\jts-1.13.jar" />
     <EmbeddedReferenceJar Include="Jars\mapsforge-map-0.3.0-jar-with-dependencies.jar" />
     <EmbeddedReferenceJar Include="Jars\slf4j-android-1.6.1-RC1.jar" />
+    <EmbeddedReferenceJar Include="Jars\jts-1.13.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <!--EmbeddedNativeLibrary Include="lib\armeabi\libjsqlite.so" /-->
   </ItemGroup>
 </Project>
