@@ -53,13 +53,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Xamarin.Android.Bindings.targets" />
   <ItemGroup>
-    <EmbeddedJar Include="Jars\AdvancedMap3D-1.0-SNAPSHOT.jar">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedJar>
     <EmbeddedJar Include="Jars\jsqlite.jar">
       <DeployService-Deploy>True</DeployService-Deploy>
     </EmbeddedJar>
     <EmbeddedJar Include="Jars\nutiteq-3dsdk-2.2.1.jar" />
+    <EmbeddedJar Include="Jars\nutiteq-advancedmap3d-layers.jar" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\protobuf-java-2.4.1.jar">

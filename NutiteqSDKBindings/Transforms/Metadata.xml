@@ -6,13 +6,19 @@
 	<attr path="/api/package[@name='com.nutiteq.geometry']" name="managedName">NutiteqGeometry</attr>
 	
 	<attr path="/api/package[@name='com.nutiteq.geometry']/class[@name='NMLModel.Mesh']/field[@name='glMesh']" name="type">java.lang.Object</attr>
-	<!--
-		<attr path="/api/package[@name='jsqlite']/class[@name='Backup']/field[@name='handle']" name="type">System.IntPtr</attr>
-	<attr path="/api/package[@name='jsqlite']/class[@name='Backup']/field[@name='handle']" name="managedReturn">Android.Runtime.IJavaObject</attr>
 
+	<!-- no need for C# access for following AsyncTasks -->
+	<remove-node path="/api/package[@name='com.nutiteq.services.routing']/class[@name='CloudMadeDirections.CmRoutingTask']" />
+	<remove-node path="/api/package[@name='com.nutiteq.advancedmap.activity']/class[@name='Offline3DMapActivity.DaeConverterServiceTask']"/>
+	<remove-node path="/api/package[@name='com.nutiteq.layers.raster']/class[@name='MapBoxMapLayer.LoadMetadataTask']"/>
+	<remove-node path="/api/package[@name='com.nutiteq.services.geocode']/class[@name='MapQuestGeocoder.MqGeocodeTask']"/>
+	<remove-node path="/api/package[@name='com.nutiteq.services.routing']/class[@name='MapQuestDirections.MqLoadInstructionImagesTask']"/>
+	<remove-node path="/api/package[@name='com.nutiteq.services.routing']/class[@name='MapQuestDirections.MqRoutingTask']"/>
 
-	<attr path="/api/package[@name='jsqlite']/class[@name='Backup']/field[@name='handle']" name="hidden">1</attr>
-	-->
+	<!-- removing EditableMapView temporarily -->
+	<remove-node path="/api/package[@name='com.nutiteq.editable']/class[@name='EditableMapView']"/>
+
+	<!-- jsqlite handles not needed for C# side, and it is a static API anyway -->
 	<remove-node path="/api/package[@name='jsqlite']/class[@name='Backup']/field[@name='handle']" />
 	<remove-node path="/api/package[@name='jsqlite']/class[@name='Database']/field[@name='handle']"/>
 	<attr path="/api/package[@name='jsqlite']" name="managedName">jsqlite</attr>
