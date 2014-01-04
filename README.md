@@ -11,4 +11,6 @@ License
 
 Sample code: MIT license. 
 
+Spatialite and other dependencies: see their respective licenses.
+
 Nutiteq SDK - commercial license. Free OpenStreetMap license is also available. See http://www.nutiteq.com for details.
